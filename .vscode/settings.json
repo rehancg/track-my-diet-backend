@@ -1,0 +1,44 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true
+    },
+    "editor.formatOnSave": false,
+    // Enable per-language
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
+    "psi-header.variables": [
+        ["projectCreationYear", "2020"],
+        ["company", "CELLATROZ"],
+        ["author", "Akila"],
+        ["authoremail", "akilahgm@gmail.com"]
+    ],
+    "psi-header.lang-config": [
+		{
+			"language": "typescript",
+			"begin": "/**",
+            "blankLinesAfter": 1,
+            "forceToTop": true
+		}
+	],
+	"psi-header.templates": [
+		{
+			"language": "*",
+			"template": [
+				"Author: <<author>> (<<authoremail>>)",
+                "Created on: <<dateformat(DD-MM-YYY)>>",
+                "Description: ",
+                "Module: Salon Backend",
+				"Copyright (c) <<projectCreationYear>> <<company>> All rights reserved."
+			]
+		}
+    ],
+    "cSpell.words": [
+        "CELLATROZ",
+        "Webhook",
+        "camelcase",
+        "cognito",
+        "leapin"
+    ],
+    "typescript.tsdk": "node_modules\\typescript\\lib"
+}

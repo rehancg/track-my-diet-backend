@@ -1,0 +1,176 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch user api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/user",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch salon api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/salon",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch booking api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/booking",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Shcedule api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/schedule",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch service api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/service",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch util api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/util",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch admin api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/admin",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch feed api",
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+      "args": ["offline", "--noTimeout", "--dontPrintOutput", "--stage=dev", "--port=3000"],
+      "sourceMaps": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*.js"],
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}/src/deliveries/feed",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"
+      },
+    }
+  ],
+  "compounds": [
+    {
+      "name": "External APIs",
+      "configurations": ["Launch ext apiRoot", "Launch ext member"]
+    },
+    {
+      "name": "Internal APIs",
+      "configurations": ["Launch int member", "Launch int swagger", "Launch int provider"]
+    }
+  ]
+}
+
