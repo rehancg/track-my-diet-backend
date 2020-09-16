@@ -7,17 +7,15 @@ import { Logger } from '../../shared/logger';
 @Controller('auth')
 export class AuthController {
   private readonly logger: Logger = Logger.getInstance();
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  @Post('register')
-  @HttpCode(HttpStatus.OK)
-  async userRegister(@Body() data: any): Promise<string> {
-    this.logger.log('User registration request', JSON.stringify(data));
-    return this.authService.userRegister(data.telNumber);
+  @Post('otp/request')
+  async requestOtp(@Body() data: any): Promise<string> {
+    this.logger.log('New otp request', JSON.stringify(data));
+    return this.authService.requestOtp(data.telNumber);
   }
 
-  @Post('validate/otp')
-  @HttpCode(HttpStatus.OK)
+  @Post('otp/validate')
   async validateOtp(@Body() data: any): Promise<string> {
     this.logger.log('Otp validation request', JSON.stringify(data));
     return this.authService.validateOtp(data.otp, data.refNumber);

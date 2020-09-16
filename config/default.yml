@@ -1,0 +1,14 @@
+server:
+  port: 3000
+
+db:
+  type: 'postgres'
+  port: 5432
+  database: 'trackmydiet'
+
+jwt:
+  expiresIn: 3600
+
+app:
+  id: 'APP_059278'
+  password: '174fc2ff9014e2ee4b6603ea8f5d880e'
