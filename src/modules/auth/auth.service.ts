@@ -1,10 +1,10 @@
 import { HttpService, Injectable, InternalServerErrorException, NotAcceptableException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import * as config from 'config';
-import { Observable } from 'rxjs';
 import { Logger } from 'src/shared/logger';
-import { UserRepository } from '../user/user.repository';
-import { RequestOtpResponseDto } from './dto/request-otp-response.dto';
-import { OtpStatus, ValidateOtpResponseDto } from './dto/validate-otp-response.dto';
+import { JwtPayload } from './jwt-payload.interface';
+import { IRequestOtpResponse } from './types/request-otp-response';
+import { OtpStatus, IValidateOtpResponse, ILoginSuccess } from './types/validate-otp-response';
 
 const appConfig = config.get('app');
 const ideamartConfig = config.get('ideamart');
@@ -13,10 +13,11 @@ export class AuthService {
     private readonly logger: Logger = Logger.getInstance();
 
     constructor(
-        private httpService: HttpService
+        private httpService: HttpService,
+        private jwtService: JwtService,
     ) { }
 
-    async requestOtp(telNumber: number): Promise<RequestOtpResponseDto> {
+    async requestOtp(telNumber: number): Promise<IRequestOtpResponse> {
         try {
             const res = await this.httpService.post(`${ideamartConfig.baseurl}/subscription/otp/request`,
                 {
@@ -26,7 +27,7 @@ export class AuthService {
                 }
             ).toPromise();
 
-            const data: RequestOtpResponseDto = res.data;
+            const data: IRequestOtpResponse = res.data;
             this.logger.log('Request otp response ', JSON.stringify(data))
 
             return res.data;
@@ -38,7 +39,7 @@ export class AuthService {
     }
 
 
-    async validateOtp(otp: number, referenceNumber: string): Promise<ValidateOtpResponseDto> {
+    async validateOtp(otp: number, referenceNumber: string): Promise<ILoginSuccess> {
         try {
             const res = await this.httpService.post(`${ideamartConfig.baseurl}/subscription/otp/verify`,
                 {
@@ -49,12 +50,15 @@ export class AuthService {
                 }
             ).toPromise();
 
-            const data: ValidateOtpResponseDto = res.data;
+            const data: IValidateOtpResponse = res.data;
             this.logger.log('Validate otp response ', JSON.stringify(data))
 
             if (data.statusCode == OtpStatus.SUCCESS) {
                 // @TODO - save user and generate token
-                return data;
+                const payload: JwtPayload = { msisdn: data.subscriberId };
+                const accessToken = await this.jwtService.sign(payload);
+
+                return { accessToken };
             } else {
                 throw new NotAcceptableException('Invalid otp entered')
             }

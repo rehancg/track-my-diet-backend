@@ -33,6 +33,15 @@ export class User extends BaseEntity {
     @Column({ nullable: true })
     language: string;
 
+    @Column({ nullable: true, type: 'decimal' })
+    bmi: number;
+
+    @Column({ nullable: true, type: 'decimal' })
+    ideal_weight: number;
+
+    @Column({ nullable: true, type: 'decimal' })
+    calory_requirement: number;
+
     @ManyToOne(type => ActivityLevel, activity_level => activity_level.id)
     activity_level: ActivityLevel;
 

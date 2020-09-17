@@ -1,9 +1,13 @@
-export class ValidateOtpResponseDto {
+export interface IValidateOtpResponse {
     subscriptionStatus: string;
     subscriberId: string;
     statusCode: string;
     statusDetails: string;
     version: String;
+}
+
+export interface ILoginSuccess {
+    accessToken: string;
 }
 
 export enum SubscriptionStatus {
