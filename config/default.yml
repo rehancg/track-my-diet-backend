@@ -4,10 +4,13 @@ server:
 db:
   type: 'postgres'
   port: 5432
-  database: 'trackmydiet'
+  database: 'postgres'
 
 jwt:
   expiresIn: 3600
+
+ideamart:
+  baseurl: 'http://core.sdp:7000'
 
 app:
   id: 'APP_059278'
