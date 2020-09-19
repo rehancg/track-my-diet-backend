@@ -1,36 +1,34 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMetaDto } from 'src/shared/dto/create-meta-dto';
 import { PatchMetaDto } from 'src/shared/dto/patch-meta-dto';
-import { CreateUserDto } from './dto/create_user.dto';
-import { UpdateUserDto } from './dto/update_user.dto';
-import { User } from './user.entity';
-import { UserRepository } from './user.repository';
+import { ArticleCategory } from './article_category.entity';
+import { ArticleCategoryRepository } from './article_category.repository';
 
 @Injectable()
-export class UserService {
+export class ArticleCategoryService {
 
     constructor(
-        private respository: UserRepository,
+        private respository: ArticleCategoryRepository,
     ) { }
 
-    async getAll(): Promise<User[]> {
+    async getAll(): Promise<ArticleCategory[]> {
         return this.respository.find()
     }
 
-    async getItemById(id: number): Promise<User> {
+    async getItemById(id: number): Promise<ArticleCategory> {
         return this.respository.findOne({ where: { id } });
     }
 
-    async createNew(data: CreateUserDto): Promise<User> {
+    async createNew(data: CreateMetaDto): Promise<ArticleCategory> {
         return this.respository.createNew(data);
     }
 
-    async updateExisting(data: UpdateUserDto): Promise<User> {
+    async updateExisting(data: PatchMetaDto): Promise<ArticleCategory> {
         return this.respository.updateExisting(data);
     }
 
     async detele(data: PatchMetaDto): Promise<void> {
         const result = await this.respository.delete({ id: data.id })
-        if (result.affected === 0) throw new NotFoundException(`User with ID ${data.id} not found`)
+        if (result.affected === 0) throw new NotFoundException(`Article category with ID ${data.id} not found`)
     }
 }

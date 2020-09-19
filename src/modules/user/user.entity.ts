@@ -49,5 +49,5 @@ export class User extends BaseEntity {
     food_type: FoodType;
 
     @ManyToOne(type => Goal, goal => goal.id)
-    goal: FoodType;
+    goal: Goal;
 }

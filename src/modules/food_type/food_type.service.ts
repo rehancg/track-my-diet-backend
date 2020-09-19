@@ -1,36 +1,34 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMetaDto } from 'src/shared/dto/create-meta-dto';
 import { PatchMetaDto } from 'src/shared/dto/patch-meta-dto';
-import { CreateUserDto } from './dto/create_user.dto';
-import { UpdateUserDto } from './dto/update_user.dto';
-import { User } from './user.entity';
-import { UserRepository } from './user.repository';
+import { FoodType } from './food_type.entity';
+import { FoodTypeRepository } from './food_type.repository';
 
 @Injectable()
-export class UserService {
+export class FoodTypeService {
 
     constructor(
-        private respository: UserRepository,
+        private respository: FoodTypeRepository,
     ) { }
 
-    async getAll(): Promise<User[]> {
+    async getAll(): Promise<FoodType[]> {
         return this.respository.find()
     }
 
-    async getItemById(id: number): Promise<User> {
+    async getItemById(id: number): Promise<FoodType> {
         return this.respository.findOne({ where: { id } });
     }
 
-    async createNew(data: CreateUserDto): Promise<User> {
+    async createNew(data: CreateMetaDto): Promise<FoodType> {
         return this.respository.createNew(data);
     }
 
-    async updateExisting(data: UpdateUserDto): Promise<User> {
+    async updateExisting(data: PatchMetaDto): Promise<FoodType> {
         return this.respository.updateExisting(data);
     }
 
     async detele(data: PatchMetaDto): Promise<void> {
         const result = await this.respository.delete({ id: data.id })
-        if (result.affected === 0) throw new NotFoundException(`User with ID ${data.id} not found`)
+        if (result.affected === 0) throw new NotFoundException(`Food type with ID ${data.id} not found`)
     }
 }

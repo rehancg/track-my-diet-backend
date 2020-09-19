@@ -2,26 +2,27 @@
 import { Body, Controller, Delete, Get, Patch, Post, ValidationPipe } from "@nestjs/common";
 import { CreateMetaDto } from "src/shared/dto/create-meta-dto";
 import { PatchMetaDto } from "src/shared/dto/patch-meta-dto";
-import { CreateUserDto } from "./dto/create_user.dto";
-import { UpdateUserDto } from "./dto/update_user.dto";
-import { User } from "./user.entity";
-import { UserService } from "./user.service";
-@Controller('user')
-export class UserController {
-    constructor(private service: UserService) { }
+import { FoodType } from "./food_type.entity";
+import { FoodTypeService } from "./food_type.service";
+
+@Controller('meta/food_type')
+export class FoodTypeContoller {
+    constructor(private service: FoodTypeService) {
+
+    }
 
     @Get()
-    async getAll(): Promise<User[]> {
+    async getAll(): Promise<FoodType[]> {
         return this.service.getAll();
     }
 
     @Post()
-    async create(@Body(ValidationPipe) data: CreateUserDto): Promise<User> {
+    async create(@Body(ValidationPipe) data: CreateMetaDto): Promise<FoodType> {
         return this.service.createNew(data);
     }
 
     @Patch()
-    async update(@Body(ValidationPipe) data: UpdateUserDto): Promise<User> {
+    async update(@Body(ValidationPipe) data: PatchMetaDto): Promise<FoodType> {
         return this.service.updateExisting(data);
     }
 
