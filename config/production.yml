@@ -1,5 +1,8 @@
 db:
-  synchronize: false
+  host: 'trackmydietorm.c5kooh39lack.ap-south-1.rds.amazonaws.com'
+  username: 'trackmydiet'
+  password: 'trackmydiet1234'
+  synchronize: true
 
 jwt:
   secret: 'topSecret51'
