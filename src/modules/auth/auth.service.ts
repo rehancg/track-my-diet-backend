@@ -30,7 +30,11 @@ export class AuthService {
                         os: appConfig.applicationMetaData.os,
                         appCode: appConfig.applicationMetaData.appCode,
                     }
+                }, {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
+            }
             ).toPromise();
 
             const data: IRequestOtpResponse = res.data;
@@ -53,7 +57,11 @@ export class AuthService {
                     password: appConfig.password,
                     referenceNo: referenceNumber,
                     otp: `${otp}`
+                }, {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
+            }
             ).toPromise();
 
             const data: IValidateOtpResponse = res.data;
