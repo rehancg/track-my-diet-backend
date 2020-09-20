@@ -10,7 +10,7 @@ jwt:
   expiresIn: 3600
 
 ideamart:
-  baseurl: 'http://core.sdp:7000'
+  baseurl: 'https://api.dialog.lk'
 
 app:
   id: 'APP_059278'
