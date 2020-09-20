@@ -23,7 +23,13 @@ export class AuthService {
                 {
                     applicationId: appConfig.id,
                     password: appConfig.password,
-                    subscriberId: `tel:${telNumber}`
+                    subscriberId: `tel:${telNumber}`,
+                    applicationMetaData: {
+                        client: appConfig.applicationMetaData.client,
+                        device: appConfig.applicationMetaData.device,
+                        os: appConfig.applicationMetaData.os,
+                        appCode: appConfig.applicationMetaData.appCode,
+                    }
                 }
             ).toPromise();
 

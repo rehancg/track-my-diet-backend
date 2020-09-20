@@ -15,3 +15,8 @@ ideamart:
 app:
   id: 'APP_059278'
   password: '174fc2ff9014e2ee4b6603ea8f5d880e'
+  applicationMetaData:
+    client: 'MOBILEAPP'
+    device: 'Samsung S10'
+    os: 'android8'
+    appCode: 'https://play.google.com/store/apps/details?id=com.zeesolutions.trackmydiet'
