@@ -7,10 +7,27 @@ db:
   database: 'postgres'
 
 jwt:
-  expiresIn: 3600
+  expiresIn: 21600
 
 ideamart:
   baseurl: 'https://api.dialog.lk'
+  id: 'APP_059278'
+  password: '174fc2ff9014e2ee4b6603ea8f5d880e'
+  applicationMetaData:
+    client: 'MOBILEAPP'
+    device: 'Samsung S10'
+    os: 'android8'
+    appCode: 'https://play.google.com/store/apps/details?id=com.zeesolutions.trackmydiet'
+
+mSpace:
+  baseurl: 'https://api.mspace.lk'
+  id: 'APP_059278'
+  password: '174fc2ff9014e2ee4b6603ea8f5d880e'
+  applicationMetaData:
+    client: 'MOBILEAPP'
+    device: 'Samsung S10'
+    os: 'android8'
+    appCode: 'https://play.google.com/store/apps/details?id=com.zeesolutions.trackmydiet'
 
 app:
   id: 'APP_059278'
@@ -20,3 +37,13 @@ app:
     device: 'Samsung S10'
     os: 'android8'
     appCode: 'https://play.google.com/store/apps/details?id=com.zeesolutions.trackmydiet'
+
+aws:
+  bucketName: 'trackmydiet'
+  accessKeyId: 'AKIA2EDQRHJAPX6RR3GR'
+  secretAccessKey: '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'
+
+admin:
+  telNo: '00000000000'
+  password: 'diet_my_track_ad'
+  tokenValidity: 43200

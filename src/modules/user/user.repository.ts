@@ -12,6 +12,7 @@ export class UserRepository extends Repository<User>{
 
     async createNew(data: CreateUserDto): Promise<User> {
         const entity = new User();
+        entity.telNo = data.telNo;
         entity.activity_level = data.activity_level;
         entity.age = data.age;
         entity.bmi = data.bmi;
@@ -21,13 +22,16 @@ export class UserRepository extends Repository<User>{
         entity.goal = data.goal;
         entity.height = data.height;
         entity.ideal_weight = data.ideal_weight;
-        entity.isVip = data.isVip;
+        entity.role = data.role;
         entity.language = data.language;
         entity.msisdn = data.msisdn;
+        entity.refreshToken = data.refreshToken;
+        entity.subscriptionStatus = data.subscriptionStatus;
 
         try {
             await entity.save();
         } catch (error) {
+            this.logger.error(JSON.stringify(error));
             throw new InternalServerErrorException('Failed to create new User');
         }
 
@@ -40,6 +44,7 @@ export class UserRepository extends Repository<User>{
             throw new NotFoundException(`User with id ${data.id} not found`);
         }
 
+        item.telNo = data.telNo;
         item.activity_level = data.activity_level;
         item.age = data.age;
         item.bmi = data.bmi;
@@ -49,10 +54,11 @@ export class UserRepository extends Repository<User>{
         item.goal = data.goal;
         item.height = data.height;
         item.ideal_weight = data.ideal_weight;
-        item.isVip = data.isVip;
+        item.role = data.role;
         item.language = data.language;
         item.msisdn = data.msisdn;
-
+        item.refreshToken = data.refreshToken;
+        item.subscriptionStatus = data.subscriptionStatus;
 
         await item.save();
         return item;

@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateMetaDto } from 'src/shared/dto/create-meta-dto';
 import { PatchMetaDto } from 'src/shared/dto/patch-meta-dto';
 import { CreateUserDto } from './dto/create_user.dto';
@@ -10,6 +11,7 @@ import { UserRepository } from './user.repository';
 export class UserService {
 
     constructor(
+        @InjectRepository(UserRepository)
         private respository: UserRepository,
     ) { }
 
@@ -21,7 +23,14 @@ export class UserService {
         return this.respository.findOne({ where: { id } });
     }
 
-    async createNew(data: CreateUserDto): Promise<User> {
+    async getUserByMsidn(msisdn: string): Promise<User> {
+        return this.respository.findOne({ where: { msisdn } });
+    }
+
+    async upsert(data: CreateUserDto): Promise<User> {
+        if (data.id) {
+            return this.respository.updateExisting(data);
+        }
         return this.respository.createNew(data);
     }
 

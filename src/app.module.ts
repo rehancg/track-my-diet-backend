@@ -14,6 +14,7 @@ import { NutritionTypeModule } from './modules/nutrition_type/nutrition_type.mod
 import { HealthStatusModule } from './modules/health_status/heath_status.module';
 import { FoodModule } from './modules/food/food.module';
 import { MealPlanModule } from './modules/meal_plan/meal_plan.module';
+import { FileUploadModule } from './modules/file_upload/file_upload.module';
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { MealPlanModule } from './modules/meal_plan/meal_plan.module';
     NutritionTypeModule,
     HealthStatusModule,
     FoodModule,
-    MealPlanModule
+    MealPlanModule,
+    FileUploadModule
   ],
 })
 export class AppModule { }

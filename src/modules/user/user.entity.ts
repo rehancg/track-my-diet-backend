@@ -3,6 +3,26 @@ import { ActivityLevel } from "../activity_level/activity_level.entity";
 import { FoodType } from "../food_type/food_type.entity";
 import { Goal } from "../goal/goal.entity";
 
+export enum UserRole {
+    ADMIN = "admin",
+    TESTER = "tester",
+    IDEA_MART = "ideamart",
+    M_SPACE = "mSpace",
+    GUESS = "guess"
+}
+
+export enum Gender {
+    MALE = "male",
+    FEMALE = "female"
+}
+
+export enum SubscriptionStatus {
+    REGISTERED = "REGISTERED",
+    UNREGISTERED = "UNREGISTERED",
+    PENDING_CHARGE = "PENDING CHARGE",
+    INITIAL_CHARGING_PENDING = "INITIAL CHARGING PENDING"
+}
+
 @Entity()
 @Unique(['telNo'])
 export class User extends BaseEntity {
@@ -12,11 +32,25 @@ export class User extends BaseEntity {
     @Column()
     telNo: string;
 
+    @Column({
+        type: "enum",
+        enum: UserRole,
+        default: UserRole.GUESS
+    })
+    role: UserRole;
+
     @Column({ nullable: true })
     msisdn: string;
 
+    @Column({
+        type: "enum",
+        enum: Gender,
+        nullable: true
+    })
+    subscriptionStatus: SubscriptionStatus;
+
     @Column({ nullable: true })
-    isVip: boolean;
+    refreshToken: string;
 
     @Column({ nullable: true, type: 'decimal' })
     height: number;
@@ -27,8 +61,12 @@ export class User extends BaseEntity {
     @Column({ nullable: true })
     age: number;
 
-    @Column({ nullable: true })
-    gender: string;
+    @Column({
+        type: "enum",
+        enum: Gender,
+        nullable: true
+    })
+    gender: Gender;
 
     @Column({ nullable: true })
     language: string;

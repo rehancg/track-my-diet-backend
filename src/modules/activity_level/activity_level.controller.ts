@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Patch, Post, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Patch, Post, UseGuards, ValidationPipe } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 import { CreateMetaDto } from "src/shared/dto/create-meta-dto";
 import { PatchMetaDto } from "src/shared/dto/patch-meta-dto";
 import { ActivityLevel } from "./activity_level.entity";
 import { ActivityLevelService } from "./activity_level.service";
 
 @Controller('meta/activity_levels')
+@UseGuards(AuthGuard())
 export class ActivityLevelContoller {
     constructor(private activityLevelService: ActivityLevelService) {
 

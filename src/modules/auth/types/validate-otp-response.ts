@@ -8,6 +8,7 @@ export interface IValidateOtpResponse {
 
 export interface ILoginSuccess {
     accessToken: string;
+    refreshToken: string
 }
 
 export enum SubscriptionStatus {
