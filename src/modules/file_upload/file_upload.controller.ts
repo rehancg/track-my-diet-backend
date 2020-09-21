@@ -1,7 +1,10 @@
-import { Controller, Post, Req, Res } from '@nestjs/common';
+import { Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from '../auth/roles.guard';
 import { FileUploadService } from './file_upload.service';
 
 @Controller('file_upload')
+@UseGuards(AuthGuard(), RolesGuard)
 export class FileUploadController {
     constructor(private readonly fileUploadService: FileUploadService) { }
     @Post()

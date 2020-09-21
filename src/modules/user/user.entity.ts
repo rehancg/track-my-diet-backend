@@ -44,7 +44,7 @@ export class User extends BaseEntity {
 
     @Column({
         type: "enum",
-        enum: Gender,
+        enum: SubscriptionStatus,
         nullable: true
     })
     subscriptionStatus: SubscriptionStatus;

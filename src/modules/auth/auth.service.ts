@@ -5,6 +5,7 @@ import { Logger } from 'src/shared/logger';
 import { SubscriptionStatus, User, UserRole } from '../user/user.entity';
 import { UserService } from '../user/user.service';
 import { NewTokenRequestDto } from './dto/new-token-request.dto';
+import { ValidateOtpDto } from './dto/validate-otp.dto';
 import { JwtPayload } from './jwt-payload.interface';
 import { AppToken } from './types/app-token';
 import { ISubscriptionStatus } from './types/get-status-response';
@@ -179,49 +180,50 @@ export class AuthService {
     }
 
 
-    async validateOtp(telNo: string, otp: number, referenceNumber: string): Promise<ILoginSuccess> {
+    async validateOtp(data: ValidateOtpDto): Promise<ILoginSuccess> {
+        const { telNo, otp, referenceNo } = data;
         try {
             const { providerConfig, formattedTelNo, provider } = this.getServiceProvide(telNo);
-
-            const res = await this.httpService.post(`${providerConfig.baseurl}/subscription/otp/verify`,
-                {
-                    applicationId: providerConfig.id,
-                    password: providerConfig.password,
-                    referenceNo: referenceNumber,
-                    otp: `${otp}`
-                }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            ).toPromise();
-
-            const data: IValidateOtpResponse = res.data;
             let user = await this.userService.getUserByMsidn(formattedTelNo);
             let tokens = null;
-
-            if (data.statusCode == OtpStatus.SUCCESS) {
-                tokens = await this.generateAppToken({ msisdn: data.subscriberId });
-
-                if (!user) user = new User();
-                user.telNo = formattedTelNo;
-                user.msisdn = formattedTelNo;
-                user.refreshToken = tokens.refreshToken;
-                user.subscriptionStatus = SubscriptionStatus.PENDING_CHARGE;
-
-                if (provider == ServiceProviders.IDEA_MART) {
-                    user.role = UserRole.IDEA_MART
-                } else if (provider == ServiceProviders.MSPACE) {
-                    user.role = UserRole.M_SPACE
-                }
-            } else if (user?.role === UserRole.TESTER) {
+            if (user?.role == UserRole.TESTER) {
                 tokens = await this.generateAppToken({ msisdn: user.telNo });
                 user.refreshToken = tokens.refreshToken;
-            }
-            else {
-                throw new NotAcceptableException('Invalid otp entered')
-            }
+            } else {
+                const res = await this.httpService.post(`${providerConfig.baseurl}/subscription/otp/verify`,
+                    {
+                        applicationId: providerConfig.id,
+                        password: providerConfig.password,
+                        referenceNo: referenceNo,
+                        otp: `${otp}`
+                    }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                ).toPromise();
 
+                const data: IValidateOtpResponse = res.data;
+
+                if (data.statusCode == OtpStatus.SUCCESS) {
+                    tokens = await this.generateAppToken({ msisdn: data.subscriberId });
+
+                    if (!user) user = new User();
+                    user.telNo = formattedTelNo;
+                    user.msisdn = formattedTelNo;
+                    user.refreshToken = tokens.refreshToken;
+                    user.subscriptionStatus = SubscriptionStatus.PENDING_CHARGE;
+
+                    if (provider == ServiceProviders.IDEA_MART) {
+                        user.role = UserRole.IDEA_MART
+                    } else if (provider == ServiceProviders.MSPACE) {
+                        user.role = UserRole.M_SPACE
+                    }
+                }
+                else {
+                    throw new NotAcceptableException('Invalid otp entered')
+                }
+            }
 
             await this.userService.upsert(user);
             return tokens;

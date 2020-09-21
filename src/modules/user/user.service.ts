@@ -38,7 +38,7 @@ export class UserService {
         return this.respository.updateExisting(data);
     }
 
-    async detele(data: PatchMetaDto): Promise<void> {
+    async detele(data: UpdateUserDto): Promise<void> {
         const result = await this.respository.delete({ id: data.id })
         if (result.affected === 0) throw new NotFoundException(`User with ID ${data.id} not found`)
     }

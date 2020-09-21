@@ -23,7 +23,7 @@ export class AuthController {
   @Post('otp/validate')
   async validateOtp(@Body(ValidationPipe) data: ValidateOtpDto): Promise<ILoginSuccess> {
     this.logger.log('Otp validation request', JSON.stringify(data));
-    return this.authService.validateOtp(data.telNo, data.otp, data.referenceNo);
+    return this.authService.validateOtp(data);
   }
 
   @Post('token/renew')

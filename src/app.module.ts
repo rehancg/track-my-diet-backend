@@ -15,6 +15,7 @@ import { HealthStatusModule } from './modules/health_status/heath_status.module'
 import { FoodModule } from './modules/food/food.module';
 import { MealPlanModule } from './modules/meal_plan/meal_plan.module';
 import { FileUploadModule } from './modules/file_upload/file_upload.module';
+import { ArticleModule } from './modules/article/article.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { FileUploadModule } from './modules/file_upload/file_upload.module';
     HealthStatusModule,
     FoodModule,
     MealPlanModule,
-    FileUploadModule
+    FileUploadModule,
+    ArticleModule
   ],
 })
 export class AppModule { }
