@@ -1,3 +1,3 @@
 export interface JwtPayload {
-    msisdn: string;
+    telNo: string;
 }

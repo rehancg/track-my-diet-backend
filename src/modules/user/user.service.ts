@@ -19,12 +19,16 @@ export class UserService {
         return this.respository.find()
     }
 
-    async getItemById(id: number): Promise<User> {
+    async getUserById(id: number): Promise<User> {
         return this.respository.findOne({ where: { id } });
     }
 
     async getUserByMsidn(msisdn: string): Promise<User> {
         return this.respository.findOne({ where: { msisdn } });
+    }
+
+    async getUserByTelNo(telNo: string): Promise<User> {
+        return this.respository.findOne({ where: { telNo } });
     }
 
     async upsert(data: CreateUserDto): Promise<User> {

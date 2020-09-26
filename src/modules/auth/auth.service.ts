@@ -43,7 +43,7 @@ export class AuthService {
         const telNo = config.get('admin.telNo');
         const tokenValidity = config.get('admin.tokenValidity');
 
-        return await this.generateAppToken({ msisdn: telNo }, tokenValidity)
+        return await this.generateAppToken({ telNo: telNo }, tokenValidity)
     }
 
     getServiceProvide = (telNo: string): { provider: ServiceProviders, providerConfig: any, formattedTelNo: string } => {
@@ -80,9 +80,9 @@ export class AuthService {
             const payload = this.jwtService.decode(newTokenRequest.accessToken) as JwtPayload;
 
             // Check if refresh token is valid
-            const user = await this.userService.getUserByMsidn(payload.msisdn);
+            const user = await this.userService.getUserByTelNo(payload.telNo);
             if (!user) {
-                this.logger.error(`User not found for the token:: with msisdn ${payload.msisdn}`)
+                this.logger.error(`User not found for the token:: with telno ${payload.telNo}`)
                 throw new NotFoundException('User not found');
             }
 
@@ -111,7 +111,7 @@ export class AuthService {
                 const data = res.data as ISubscriptionStatus;
 
                 if (data.subscriptionStatus != SubscriptionStatus.REGISTERED) {
-                    this.logger.error(`User session expired with no active subscription:: for msisdn ${payload.msisdn}`)
+                    this.logger.error(`User session expired with no active subscription:: for telno ${payload.telNo}`)
                     throw new BadRequestException('Subscription status is not active');
                 }
 
@@ -187,7 +187,7 @@ export class AuthService {
             let user = await this.userService.getUserByMsidn(formattedTelNo);
             let tokens = null;
             if (user?.role == UserRole.TESTER) {
-                tokens = await this.generateAppToken({ msisdn: user.telNo });
+                tokens = await this.generateAppToken({ telNo: user.telNo });
                 user.refreshToken = tokens.refreshToken;
             } else {
                 const res = await this.httpService.post(`${providerConfig.baseurl}/subscription/otp/verify`,
@@ -206,7 +206,7 @@ export class AuthService {
                 const data: IValidateOtpResponse = res.data;
 
                 if (data.statusCode == OtpStatus.SUCCESS) {
-                    tokens = await this.generateAppToken({ msisdn: data.subscriberId });
+                    tokens = await this.generateAppToken({ telNo: telNo });
 
                     if (!user) user = new User();
                     user.telNo = formattedTelNo;
