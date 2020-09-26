@@ -35,6 +35,10 @@ export class UserService {
         if (data.id) {
             return this.respository.updateExisting(data);
         }
+
+        if (data.weight && data.height && !data.calory_requirement) {
+            // @TODO - Calculate BMI and Calory Requirement
+        }
         return this.respository.createNew(data);
     }
 

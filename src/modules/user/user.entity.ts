@@ -2,6 +2,7 @@ import { BaseEntity, Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn, U
 import { ActivityLevel } from "../activity_level/activity_level.entity";
 import { FoodType } from "../food_type/food_type.entity";
 import { Goal } from "../goal/goal.entity";
+import { HealthStatus } from "../health_status/health_status.entity";
 
 export enum UserRole {
     ADMIN = "admin",
@@ -88,4 +89,9 @@ export class User extends BaseEntity {
 
     @ManyToOne(type => Goal, goal => goal.id)
     goal: Goal;
+
+
+    @ManyToOne(type => HealthStatus, health_status => health_status.id, { eager: true })
+    health_status: HealthStatus
+
 }

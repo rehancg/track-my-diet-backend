@@ -55,9 +55,6 @@ export class Food extends BaseEntity {
     @ManyToOne(type => EatingWindow, eating_window => eating_window.id, { eager: true })
     eating_window: EatingWindow
 
-    @ManyToOne(type => HealthStatus, health_status => health_status.id, { eager: true })
-    health_status: HealthStatus
-
     @OneToMany(type => FoodToMealPlan, food_to_meal_plan => food_to_meal_plan.id)
     food_to_meal_plan: FoodToMealPlan[]
 
