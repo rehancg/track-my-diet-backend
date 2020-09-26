@@ -18,7 +18,6 @@ export class FoodRepository extends Repository<Food>{
         entity.eating_window = data.eating_window;
         entity.fat = data.fat;
         entity.food_type = data.food_type;
-        entity.health_status = data.health_status;
         entity.image_url = data.image_url;
         entity.is_budget = data.is_budget;
         entity.name = data.name;
@@ -49,7 +48,6 @@ export class FoodRepository extends Repository<Food>{
         item.eating_window = data.eating_window;
         item.fat = data.fat;
         item.food_type = data.food_type;
-        item.health_status = data.health_status;
         item.image_url = data.image_url;
         item.is_budget = data.is_budget;
         item.name = data.name;

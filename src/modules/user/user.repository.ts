@@ -20,6 +20,7 @@ export class UserRepository extends Repository<User>{
         entity.food_type = data.food_type;
         entity.gender = data.gender;
         entity.goal = data.goal;
+        entity.health_status = data.health_status;
         entity.height = data.height;
         entity.ideal_weight = data.ideal_weight;
         entity.role = data.role;
@@ -53,6 +54,7 @@ export class UserRepository extends Repository<User>{
         item.gender = data.gender;
         item.goal = data.goal;
         item.height = data.height;
+        item.health_status = data.health_status;
         item.ideal_weight = data.ideal_weight;
         item.role = data.role;
         item.language = data.language;

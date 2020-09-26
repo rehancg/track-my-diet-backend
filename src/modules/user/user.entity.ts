@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ActivityLevel } from "../activity_level/activity_level.entity";
 import { FoodType } from "../food_type/food_type.entity";
 import { Goal } from "../goal/goal.entity";
@@ -90,8 +90,7 @@ export class User extends BaseEntity {
     @ManyToOne(type => Goal, goal => goal.id)
     goal: Goal;
 
-
-    @ManyToOne(type => HealthStatus, health_status => health_status.id, { eager: true })
+    @ManyToOne(type => HealthStatus, health_status => health_status.id)
     health_status: HealthStatus
 
 }

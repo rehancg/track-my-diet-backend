@@ -41,5 +41,5 @@ export class CreateUserDto {
 
     goal: Goal;
 
-    heath_status: HealthStatus;
+    health_status: HealthStatus;
 }

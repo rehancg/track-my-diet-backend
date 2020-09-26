@@ -184,7 +184,7 @@ export class AuthService {
         const { telNo, otp, referenceNo } = data;
         try {
             const { providerConfig, formattedTelNo, provider } = this.getServiceProvide(telNo);
-            let user = await this.userService.getUserByMsidn(formattedTelNo);
+            let user = await this.userService.getUserByTelNo(formattedTelNo);
             let tokens = null;
             if (user?.role == UserRole.TESTER) {
                 tokens = await this.generateAppToken({ telNo: user.telNo });
