@@ -34,14 +34,14 @@ export class AuthService {
     // Generate admin token
     async generateAdminToken(password: string): Promise<AppToken> {
 
-        if (password != config('admin.password')) {
+        if (password != config.get('admin.password')) {
             this.logger.error('Invalid admin password entered')
             throw new UnauthorizedException();
         }
 
         // Get admin user
-        const telNo = config('admin.telNo');
-        const tokenValidity = config('admin.tokenValidity');
+        const telNo = config.get('admin.telNo');
+        const tokenValidity = config.get('admin.tokenValidity');
 
         return await this.generateAppToken({ msisdn: telNo }, tokenValidity)
     }
@@ -89,7 +89,7 @@ export class AuthService {
             let providerConfig = null;
 
             if (user.role == UserRole.IDEA_MART) {
-                providerConfig = config('ideamart');
+                providerConfig = config.get('ideamart');
             } else if (user.role == UserRole.M_SPACE) {
                 providerConfig = config.get('mSpace');
             }

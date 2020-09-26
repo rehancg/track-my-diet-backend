@@ -8,6 +8,7 @@ import { ValidateOtpDto } from './dto/validate-otp.dto';
 import { IRequestOtpResponse } from './types/request-otp-response';
 import { ILoginSuccess, IValidateOtpResponse } from './types/validate-otp-response';
 import { NewTokenRequestDto } from './dto/new-token-request.dto';
+import { AdminAuthRequestDto } from './dto/admin-auth-request.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -29,5 +30,10 @@ export class AuthController {
   @Post('token/renew')
   async renewToken(@Body(ValidationPipe) data: NewTokenRequestDto): Promise<ILoginSuccess> {
     return this.authService.renewAppToken(data);
+  }
+
+  @Post('admin/login')
+  async adminLogin(@Body(ValidationPipe) data: AdminAuthRequestDto): Promise<ILoginSuccess> {
+    return this.authService.generateAdminToken(data.password);
   }
 }
