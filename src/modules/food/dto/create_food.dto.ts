@@ -1,7 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
+import { Type } from 'class-transformer';
 import { EatingWindow } from 'src/modules/eating_window/eating_window.entity';
-import { FoodType } from 'src/modules/food_type/food_type.entity';
-import { HealthStatus } from 'src/modules/health_status/health_status.entity';
 import { NutritionType } from 'src/modules/nutrition_type/nutrition_type.entity';
 
 export class CreateFoodDto {
@@ -11,30 +10,34 @@ export class CreateFoodDto {
     @IsNotEmpty()
     name_si: string;
 
-    @IsNotEmpty()
     thumbnail: string;
 
-    @IsNotEmpty()
     image_url: string;
 
     @IsNotEmpty()
     serving_unit: string;
 
+    @Type(() => Number)
     @IsNotEmpty()
     serving_size: number;
 
+    @Type(() => Number)
     @IsNotEmpty()
     calories: number;
 
+    @Type(() => Number)
     @IsNotEmpty()
     protein: number;
 
+    @Type(() => Number)
     @IsNotEmpty()
     fat: number;
 
+    @Type(() => Number)
     @IsNotEmpty()
     carb: number;
 
+    @Type(() => Number)
     @IsNotEmpty()
     cost: number;
 
@@ -45,11 +48,5 @@ export class CreateFoodDto {
     nutrition_type: NutritionType
 
     @IsNotEmpty()
-    food_type: FoodType
-
-    @IsNotEmpty()
     eating_window: EatingWindow
-
-    @IsNotEmpty()
-    health_status: HealthStatus
 }

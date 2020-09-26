@@ -1,5 +1,5 @@
 
-import { Body, Controller, Delete, Get, Patch, Post, UseGuards, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Roles } from "../auth/roles.decorator";
 import { RolesGuard } from "../auth/roles.guard";
@@ -18,6 +18,11 @@ export class FoodContoller {
     @Get()
     async getAll(): Promise<Food[]> {
         return this.service.getAll();
+    }
+
+    @Get('/:id')
+    async getById(@Param('id', ParseIntPipe) id: number): Promise<Food> {
+        return this.service.getItemById(id);
     }
 
     @Post()

@@ -25,22 +25,22 @@ export class Food extends BaseEntity {
     @Column()
     serving_unit: string;
 
-    @Column()
+    @Column({ type: 'decimal' })
     serving_size: number;
 
-    @Column()
+    @Column({ type: 'decimal' })
     calories: number;
 
-    @Column()
+    @Column({ type: 'decimal' })
     protein: number;
 
-    @Column()
+    @Column({ type: 'decimal' })
     fat: number;
 
-    @Column()
+    @Column({ type: 'decimal' })
     carb: number;
 
-    @Column()
+    @Column({ type: 'decimal' })
     cost: number;
 
     @Column()
@@ -48,9 +48,6 @@ export class Food extends BaseEntity {
 
     @ManyToOne(type => NutritionType, nutrition_type => nutrition_type.id, { eager: true })
     nutrition_type: NutritionType
-
-    @ManyToOne(type => FoodType, food_type => food_type.id, { eager: true })
-    food_type: FoodType
 
     @ManyToOne(type => EatingWindow, eating_window => eating_window.id, { eager: true })
     eating_window: EatingWindow

@@ -17,7 +17,6 @@ export class FoodRepository extends Repository<Food>{
         entity.cost = data.cost;
         entity.eating_window = data.eating_window;
         entity.fat = data.fat;
-        entity.food_type = data.food_type;
         entity.image_url = data.image_url;
         entity.is_budget = data.is_budget;
         entity.name = data.name;
@@ -30,6 +29,7 @@ export class FoodRepository extends Repository<Food>{
         try {
             await entity.save();
         } catch (error) {
+            this.logger.error('Failed to create new food ', error)
             throw new InternalServerErrorException('Failed to create new Food');
         }
 
@@ -47,7 +47,6 @@ export class FoodRepository extends Repository<Food>{
         item.cost = data.cost;
         item.eating_window = data.eating_window;
         item.fat = data.fat;
-        item.food_type = data.food_type;
         item.image_url = data.image_url;
         item.is_budget = data.is_budget;
         item.name = data.name;

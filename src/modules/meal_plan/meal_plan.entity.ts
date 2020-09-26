@@ -2,6 +2,7 @@ import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, Pri
 import { EatingWindow } from "../eating_window/eating_window.entity";
 import { Food } from "../food/food.entity";
 import { FoodToMealPlan } from "../food_to_meal_plan/food_to_meal_plan.entity";
+import { FoodType } from "../food_type/food_type.entity";
 
 @Entity()
 export class MealPlan extends BaseEntity {
@@ -13,6 +14,9 @@ export class MealPlan extends BaseEntity {
 
     @Column({ nullable: true })
     name_si: string;
+
+    @ManyToOne(type => FoodType, food_type => food_type.id, { eager: true })
+    food_type: FoodType
 
     @OneToMany(type => FoodToMealPlan, food_to_meal_plan => food_to_meal_plan.id, { eager: true })
     items: FoodToMealPlan[]

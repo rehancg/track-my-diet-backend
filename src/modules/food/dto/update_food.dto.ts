@@ -14,10 +14,10 @@ export class UpdateFoodDto {
     @IsNotEmpty()
     name_si: string;
 
-    @IsNotEmpty()
+    // @IsNotEmpty()
     thumbnail: string;
 
-    @IsNotEmpty()
+    // @IsNotEmpty()
     image_url: string;
 
     @IsNotEmpty()
@@ -48,11 +48,5 @@ export class UpdateFoodDto {
     nutrition_type: NutritionType
 
     @IsNotEmpty()
-    food_type: FoodType
-
-    @IsNotEmpty()
     eating_window: EatingWindow
-
-    @IsNotEmpty()
-    health_status: HealthStatus
 }
