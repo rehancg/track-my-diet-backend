@@ -14,11 +14,13 @@ export class FoodToMealPlanRepository extends Repository<FoodToMealPlan>{
         const entity = new FoodToMealPlan();
         entity.eating_window = data.eating_window;
         entity.food = data.food;
+        entity.servings = data.servings;
         entity.meal_plan = data.meal_plan
 
         try {
             await entity.save();
         } catch (error) {
+            this.logger.error(error)
             throw new InternalServerErrorException('Failed to create new Food for mealplan');
         }
 
@@ -34,6 +36,7 @@ export class FoodToMealPlanRepository extends Repository<FoodToMealPlan>{
         item.eating_window = data.eating_window;
         item.food = data.food;
         item.meal_plan = data.meal_plan
+        item.servings = data.servings;
 
         await item.save();
         return item;

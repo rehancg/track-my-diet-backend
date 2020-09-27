@@ -11,7 +11,7 @@ export class FoodToMealPlan extends BaseEntity {
     @Column()
     servings: number;
 
-    @ManyToOne(type => EatingWindow, eating_window => eating_window.id)
+    @ManyToOne(type => EatingWindow, eating_window => eating_window.id, { eager: true })
     eating_window: EatingWindow;
 
     @ManyToOne(type => Food, food => food.id, { eager: true })

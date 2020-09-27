@@ -45,6 +45,9 @@ export class UpdateFoodDto {
     is_budget: boolean;
 
     @IsNotEmpty()
+    is_supplement: boolean;
+
+    @IsNotEmpty()
     nutrition_type: NutritionType
 
     @IsNotEmpty()

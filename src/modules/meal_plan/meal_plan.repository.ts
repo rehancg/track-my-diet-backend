@@ -7,6 +7,7 @@ import { Logger } from "src/shared/logger";
 import { MealPlan } from "./meal_plan.entity";
 import { CreateMealPlanDto } from './dto/create_meal_plan.dto'
 import { UpdateMealPlanDto } from './dto/update_meal_plan.dto'
+import { FoodToMealPlan } from "../food_to_meal_plan/food_to_meal_plan.entity";
 
 
 @EntityRepository(MealPlan)
@@ -17,6 +18,7 @@ export class MealPlanRepository extends Repository<MealPlan>{
         const entity = new MealPlan();
         entity.name = data.name;
         entity.name_si = data.name_si;
+        entity.food_type = data.food_type;
         entity.items = data.items;
 
         try {
@@ -36,7 +38,12 @@ export class MealPlanRepository extends Repository<MealPlan>{
 
         item.name = data.name;
         item.name_si = data.name_si;
-        item.items = data.items;
+
+        item.food_type = data.food_type;
+
+        item.calories = data.items.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0);
+        item.cost = data.items.reduce((total, foodItem) => total + (foodItem.food.cost * foodItem.servings), 0);
+        item.with_suppliment = data.items.some(x => x.food.is_supplement);
 
         await item.save();
         return item;

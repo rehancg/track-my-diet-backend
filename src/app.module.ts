@@ -16,6 +16,7 @@ import { FoodModule } from './modules/food/food.module';
 import { MealPlanModule } from './modules/meal_plan/meal_plan.module';
 import { FileUploadModule } from './modules/file_upload/file_upload.module';
 import { ArticleModule } from './modules/article/article.module';
+import { FoodToMealPlanModule } from './modules/food_to_meal_plan/food_to_meal_plan.module';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { ArticleModule } from './modules/article/article.module';
     FoodModule,
     MealPlanModule,
     FileUploadModule,
-    ArticleModule
+    ArticleModule,
+    FoodToMealPlanModule
   ],
 })
 export class AppModule { }

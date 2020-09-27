@@ -21,6 +21,14 @@ export class FoodToMealPlanService {
         return this.respository.findOne({ where: { id } });
     }
 
+    async upsert(data: CreateFoodToMealPlanDto): Promise<FoodToMealPlan> {
+        if (!data.id) {
+            return this.respository.createNew(data);
+        } else {
+            return this.respository.updateExisting(data);
+        }
+    }
+
     async createNew(data: CreateFoodToMealPlanDto): Promise<FoodToMealPlan> {
         return this.respository.createNew(data);
     }
@@ -29,8 +37,8 @@ export class FoodToMealPlanService {
         return this.respository.updateExisting(data);
     }
 
-    async detele(data: PatchMetaDto): Promise<void> {
-        const result = await this.respository.delete({ id: data.id })
-        if (result.affected === 0) throw new NotFoundException(`Food for mealplan with ID ${data.id} not found`)
+    async detele(id: number): Promise<void> {
+        const result = await this.respository.delete({ id })
+        if (result.affected === 0) throw new NotFoundException(`Food for mealplan with ID ${id} not found`)
     }
 }

@@ -1,6 +1,4 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { EatingWindow } from "../eating_window/eating_window.entity";
-import { Food } from "../food/food.entity";
 import { FoodToMealPlan } from "../food_to_meal_plan/food_to_meal_plan.entity";
 import { FoodType } from "../food_type/food_type.entity";
 
@@ -15,10 +13,22 @@ export class MealPlan extends BaseEntity {
     @Column({ nullable: true })
     name_si: string;
 
+    @Column({ nullable: true })
+    image_url: string;
+
+    @Column({ nullable: true, type: "decimal" })
+    calories: number;
+
+    @Column({ nullable: true, type: "decimal" })
+    cost: number;
+
+    @Column({ nullable: true })
+    with_suppliment: boolean;
+
     @ManyToOne(type => FoodType, food_type => food_type.id, { eager: true })
     food_type: FoodType
 
-    @OneToMany(type => FoodToMealPlan, food_to_meal_plan => food_to_meal_plan.id, { eager: true })
+    @OneToMany(type => FoodToMealPlan, food_to_meal_plan => food_to_meal_plan.meal_plan, { eager: true, nullable: true })
     items: FoodToMealPlan[]
 
     @CreateDateColumn()

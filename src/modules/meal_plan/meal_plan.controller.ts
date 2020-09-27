@@ -1,5 +1,5 @@
 
-import { Body, Controller, Delete, Get, Patch, Post, UseGuards, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateMetaDto } from "src/shared/dto/create-meta-dto";
 import { PatchMetaDto } from "src/shared/dto/patch-meta-dto";
@@ -22,6 +22,11 @@ export class MealPlanContoller {
         return this.service.getAll();
     }
 
+    @Get('/:id')
+    async getById(@Param('id', ParseIntPipe) id: number): Promise<MealPlan> {
+        return this.service.getItemById(id);
+    }
+
     @Post()
     @UseGuards(AuthGuard(), RolesGuard)
     @Roles(UserRole.ADMIN)
@@ -41,6 +46,13 @@ export class MealPlanContoller {
     @Roles(UserRole.ADMIN)
     async delete(@Body(ValidationPipe) data: PatchMetaDto): Promise<void> {
         return this.service.detele(data);
+    }
+
+    @Delete('/food/:id')
+    @UseGuards(AuthGuard(), RolesGuard)
+    @Roles(UserRole.ADMIN)
+    async deleteMealPlanFood(@Param('id', ParseIntPipe) id: number): Promise<void> {
+        return this.service.deteleMealPlanFood(id);
     }
 
 }

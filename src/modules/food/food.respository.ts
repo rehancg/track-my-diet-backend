@@ -25,6 +25,7 @@ export class FoodRepository extends Repository<Food>{
         entity.protein = data.protein;
         entity.serving_size = data.serving_size;
         entity.serving_unit = data.serving_unit;
+        entity.is_supplement = data.is_supplement;
 
         try {
             await entity.save();
@@ -55,6 +56,7 @@ export class FoodRepository extends Repository<Food>{
         item.protein = data.protein;
         item.serving_size = data.serving_size;
         item.serving_unit = data.serving_unit;
+        item.is_supplement = data.is_supplement;
         await item.save();
         return item;
     }

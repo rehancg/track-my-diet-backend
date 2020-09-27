@@ -46,6 +46,9 @@ export class Food extends BaseEntity {
     @Column()
     is_budget: boolean;
 
+    @Column({ nullable: true })
+    is_supplement: boolean;
+
     @ManyToOne(type => NutritionType, nutrition_type => nutrition_type.id, { eager: true })
     nutrition_type: NutritionType
 

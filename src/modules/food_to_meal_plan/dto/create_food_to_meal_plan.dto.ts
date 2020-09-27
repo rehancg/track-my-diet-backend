@@ -4,6 +4,8 @@ import { Food } from 'src/modules/food/food.entity';
 import { MealPlan } from 'src/modules/meal_plan/meal_plan.entity';
 
 export class CreateFoodToMealPlanDto {
+    id: number;
+
     @IsNotEmpty()
     servings: number;
 
