@@ -1,16 +1,18 @@
 import { IsNotEmpty } from 'class-validator';
 
 export class PatchMetaDto {
-    @IsNotEmpty()
-    id: number;
+  @IsNotEmpty()
+  id: number;
 
-    @IsNotEmpty()
-    name: string;
+  @IsNotEmpty()
+  name: string;
 
-    name_si: string;
+  name_si: string;
 
-    @IsNotEmpty()
-    description: string
+  @IsNotEmpty()
+  description: string;
 
-    description_si: string
+  description_si: string;
+
+  value!: number;
 }

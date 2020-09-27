@@ -1,25 +1,35 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class ActivityLevel extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column({ nullable: true })
-    name_si: string;
+  @Column({ nullable: true })
+  name_si: string;
 
-    @Column({ nullable: true })
-    description: string
+  @Column({ nullable: true })
+  description: string;
 
-    @Column({ nullable: true })
-    description_si: string
+  @Column({ nullable: true })
+  description_si: string;
 
-    @CreateDateColumn()
-    created_at: Date;
+  @Column({ nullable: true, type: 'decimal', precision: 5, scale: 3 })
+  value: number;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }

@@ -5,13 +5,10 @@ import { ActivityLevelContoller } from './activity_level.controller';
 import { ActivityLevelRepository } from './activity_level.repository';
 import { ActivityLevelService } from './activity_level.service';
 
-
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([ActivityLevelRepository]),
-        AuthModule
-    ],
-    controllers: [ActivityLevelContoller],
-    providers: [ActivityLevelService]
+  imports: [TypeOrmModule.forFeature([ActivityLevelRepository]), AuthModule],
+  controllers: [ActivityLevelContoller],
+  providers: [ActivityLevelService],
+  exports: [ActivityLevelService],
 })
-export class ActivityLevelModule { }
+export class ActivityLevelModule {}
