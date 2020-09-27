@@ -1,13 +1,15 @@
 import { IsNotEmpty } from 'class-validator';
 
 export class CreateMetaDto {
-    @IsNotEmpty()
-    name: string;
+  @IsNotEmpty()
+  name: string;
 
-    name_si: string;
+  name_si: string;
 
-    @IsNotEmpty()
-    description: string
+  @IsNotEmpty()
+  description: string;
 
-    description_si: string
+  description_si: string;
+
+  value!: string;
 }
