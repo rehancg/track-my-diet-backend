@@ -27,7 +27,7 @@ export class UserController {
   }
 
   @Post()
-  async create(@Body(ValidationPipe) data: any): Promise<User> {
+  async create(@Body(ValidationPipe) data: CreateUserDto): Promise<User> {
     return this.service.upsert(data);
   }
 
