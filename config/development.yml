@@ -1,5 +1,5 @@
 db:
-  host: '127.0.0.1'
+  host: '143.110.186.112'
   username: 'tmd_admin'
   password: 'lassanakolla123'
   synchronize: true
