@@ -11,5 +11,5 @@ export class CreateMetaDto {
 
   description_si: string;
 
-  value!: string;
+  value!: number;
 }
