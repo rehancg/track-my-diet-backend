@@ -1,7 +1,7 @@
 db:
-  host: 'trackmydietorm.c5kooh39lack.ap-south-1.rds.amazonaws.com'
-  username: 'trackmydiet'
-  password: 'trackmydiet1234'
+  host: '143.110.186.112'
+  username: 'tmd_admin'
+  password: 'lassanakolla123'
   synchronize: true
 
 jwt:
