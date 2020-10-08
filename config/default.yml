@@ -39,9 +39,7 @@ app:
     appCode: 'https://play.google.com/store/apps/details?id=com.zeesolutions.trackmydiet'
 
 aws:
-  bucketName: 'trackmydiet'
-  accessKeyId: 'AKIA2EDQRHJAPX6RR3GR'
-  secretAccessKey: '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'
+  bucketName: 'track-my-diet'
 
 admin:
   telNo: '00000000000'

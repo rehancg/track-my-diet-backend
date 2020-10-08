@@ -1,6 +1,6 @@
 'use strict';
 
-import { Controller, Post, HttpCode, HttpStatus, Body, ValidationPipe, Get } from '@nestjs/common';
+import { Controller, Post, HttpCode, HttpStatus, Body, ValidationPipe, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Logger } from '../../shared/logger';
 import { RequestOtpDto } from './dto/request-otp.dto';
@@ -9,6 +9,9 @@ import { IRequestOtpResponse } from './types/request-otp-response';
 import { ILoginSuccess, IValidateOtpResponse } from './types/validate-otp-response';
 import { NewTokenRequestDto } from './dto/new-token-request.dto';
 import { AdminAuthRequestDto } from './dto/admin-auth-request.dto';
+import { User } from '../user/user.entity';
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from './get-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -19,6 +22,12 @@ export class AuthController {
   async requestOtp(@Body(ValidationPipe) data: RequestOtpDto): Promise<IRequestOtpResponse> {
     this.logger.log('New otp request', JSON.stringify(data));
     return this.authService.requestOtp(data.telNo);
+  }
+
+  @Get('current-session')
+  @UseGuards(AuthGuard())
+  async getCurrentSession(@GetUser() user: User): Promise<User> {
+    return user;
   }
 
   @Post('otp/validate')
