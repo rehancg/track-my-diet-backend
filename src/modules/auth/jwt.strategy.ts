@@ -21,7 +21,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         try {
             const { telNo } = payload;
             const user = await this.userService.getUserByTelNo(telNo);
-
             if (!user) {
                 throw new UnauthorizedException();
             }
@@ -31,6 +30,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
             return user;
         } catch (error) {
+            console.log(error);
             throw new UnauthorizedException();
         }
     }

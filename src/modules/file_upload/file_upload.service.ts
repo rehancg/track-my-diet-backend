@@ -6,7 +6,9 @@ import * as config from 'config';
 import { Logger } from 'src/shared/logger';
 
 const awsConfig = config.get('aws');
-const s3 = new AWS.S3()
+const s3 = new AWS.S3({
+    endpoint: awsConfig.endPoint
+})
 
 @Injectable()
 export class FileUploadService {

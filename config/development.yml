@@ -1,9 +1,0 @@
-db:
-  host: '143.110.186.112'
-  username: 'tmd_admin'
-  password: 'lassanakolla123'
-  synchronize: true
-
-jwt:
-  secret: 'topSecret51'
-  refreshSecret: 'topSecret52'

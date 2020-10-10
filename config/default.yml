@@ -5,9 +5,15 @@ db:
   type: 'postgres'
   port: 5432
   database: 'postgres'
+  host: '143.110.186.112'
+  username: 'tmd_admin'
+  password: 'lassanakolla123'
+  synchronize: true
 
 jwt:
   expiresIn: 21600
+  secret: 'topSecret51'
+  refreshSecret: 'topSecret52'
 
 ideamart:
   baseurl: 'https://api.dialog.lk'
@@ -40,6 +46,7 @@ app:
 
 aws:
   bucketName: 'track-my-diet'
+  endPoint: 'ams3.digitaloceanspaces.com'
 
 admin:
   telNo: '00000000000'
