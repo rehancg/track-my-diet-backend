@@ -4,7 +4,7 @@ import { RolesGuard } from '../auth/roles.guard';
 import { FileUploadService } from './file_upload.service';
 
 @Controller('file_upload')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard())
 export class FileUploadController {
     constructor(private readonly fileUploadService: FileUploadService) { }
     @Post()
