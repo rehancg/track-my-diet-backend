@@ -146,6 +146,16 @@ export class AuthService {
     async requestOtp(telNumber: string): Promise<IRequestOtpResponse> {
         try {
             const { providerConfig, formattedTelNo } = this.getServiceProvide(telNumber);
+            let user = await this.userService.getUserByTelNo(formattedTelNo);
+            if (user?.role == UserRole.TESTER) {
+                return {
+                    referenceNo: '',
+                    statusCode: '',
+                    statusDetails: '',
+                    version: ''
+                }
+            }
+
             const res = await this.httpService.post(`${providerConfig.baseurl}/subscription/otp/request`,
                 {
                     applicationId: providerConfig.id,
