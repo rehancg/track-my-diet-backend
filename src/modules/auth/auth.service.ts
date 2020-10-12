@@ -149,7 +149,7 @@ export class AuthService {
             let user = await this.userService.getUserByTelNo(formattedTelNo);
             if (user?.role == UserRole.TESTER) {
                 return {
-                    referenceNo: '',
+                    referenceNo: '0000-0000-0000-0000',
                     statusCode: '',
                     statusDetails: '',
                     version: ''
