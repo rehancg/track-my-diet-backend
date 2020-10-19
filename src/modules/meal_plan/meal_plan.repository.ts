@@ -8,6 +8,7 @@ import { MealPlan } from "./meal_plan.entity";
 import { CreateMealPlanDto } from './dto/create_meal_plan.dto'
 import { UpdateMealPlanDto } from './dto/update_meal_plan.dto'
 import { FoodToMealPlan } from "../food_to_meal_plan/food_to_meal_plan.entity";
+import { round } from "src/shared/util/utilities";
 
 
 @EntityRepository(MealPlan)
@@ -41,11 +42,11 @@ export class MealPlanRepository extends Repository<MealPlan>{
 
         item.food_type = data.food_type;
 
-        item.calories = data.items.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0);
-        item.fat = data.items.reduce((total, foodItem) => total + (foodItem.food.fat * foodItem.servings), 0);
-        item.carb = data.items.reduce((total, foodItem) => total + (foodItem.food.carb * foodItem.servings), 0);
-        item.protien = data.items.reduce((total, foodItem) => total + (foodItem.food.protein * foodItem.servings), 0);
-        item.cost = data.items.reduce((total, foodItem) => total + (foodItem.food.cost * foodItem.servings), 0);
+        item.calories = round(data.items.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0));
+        item.fat = round(data.items.reduce((total, foodItem) => total + (foodItem.food.fat * foodItem.servings), 0));
+        item.carb = round(data.items.reduce((total, foodItem) => total + (foodItem.food.carb * foodItem.servings), 0));
+        item.protien = round(data.items.reduce((total, foodItem) => total + (foodItem.food.protein * foodItem.servings), 0));
+        item.cost = round(data.items.reduce((total, foodItem) => total + (foodItem.food.cost * foodItem.servings), 0));
         item.with_suppliment = data.items.some(x => x.food.is_supplement);
 
         await item.save();

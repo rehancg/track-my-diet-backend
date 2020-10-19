@@ -13,6 +13,13 @@ export const convertCmToInches = (height: number): number => {
   return height / 2.54;
 };
 
+export const round = (value: number, digits: number = 2) => {
+  value = value * Math.pow(10, digits);
+  value = Math.round(value);
+  value = value / Math.pow(10, digits);
+  return value;
+}
+
 export const calculateBMR = (
   gender: GENDER,
   weight: number,
