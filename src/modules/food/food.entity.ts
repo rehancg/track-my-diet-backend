@@ -28,19 +28,19 @@ export class Food extends BaseEntity {
     @Column({ type: 'decimal' })
     serving_size: number;
 
-    @Column({ type: 'decimal' })
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
     calories: number;
 
-    @Column({ type: 'decimal' })
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
     protein: number;
 
-    @Column({ type: 'decimal' })
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
     fat: number;
 
-    @Column({ type: 'decimal' })
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
     carb: number;
 
-    @Column({ type: 'decimal' })
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
     cost: number;
 
     @Column()
