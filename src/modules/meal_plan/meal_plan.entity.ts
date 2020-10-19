@@ -16,10 +16,19 @@ export class MealPlan extends BaseEntity {
     @Column({ nullable: true })
     image_url: string;
 
-    @Column({ nullable: true, type: "decimal" })
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
     calories: number;
 
-    @Column({ nullable: true, type: "decimal" })
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
+    fat: number;
+
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
+    protien: number;
+
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
+    carbs: number;
+
+    @Column("decimal", { precision: 5, scale: 2, default: 0, })
     cost: number;
 
     @Column({ nullable: true })

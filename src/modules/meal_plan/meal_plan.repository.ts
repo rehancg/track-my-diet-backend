@@ -42,6 +42,9 @@ export class MealPlanRepository extends Repository<MealPlan>{
         item.food_type = data.food_type;
 
         item.calories = data.items.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0);
+        item.fat = data.items.reduce((total, foodItem) => total + (foodItem.food.fat * foodItem.servings), 0);
+        item.carbs = data.items.reduce((total, foodItem) => total + (foodItem.food.carb * foodItem.servings), 0);
+        item.protien = data.items.reduce((total, foodItem) => total + (foodItem.food.protein * foodItem.servings), 0);
         item.cost = data.items.reduce((total, foodItem) => total + (foodItem.food.cost * foodItem.servings), 0);
         item.with_suppliment = data.items.some(x => x.food.is_supplement);
 
