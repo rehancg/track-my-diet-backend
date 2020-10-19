@@ -26,7 +26,7 @@ export class MealPlan extends BaseEntity {
     protien: number;
 
     @Column("decimal", { precision: 5, scale: 2, default: 0, })
-    carbs: number;
+    carb: number;
 
     @Column("decimal", { precision: 5, scale: 2, default: 0, })
     cost: number;
