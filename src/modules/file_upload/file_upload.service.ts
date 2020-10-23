@@ -37,7 +37,7 @@ export class FileUploadService {
             bucket: awsConfig.bucketName,
             acl: 'public-read',
             key: function (request, file, cb) {
-                cb(null, `${Date.now().toString()} - ${file.originalname}`);
+                cb(null, `tmd - ${Date.now().toString()} - ${file.originalname}`);
             },
         }),
     }).array('upload', 1);
