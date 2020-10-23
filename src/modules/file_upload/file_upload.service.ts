@@ -20,6 +20,7 @@ export class FileUploadService {
         try {
             this.upload(req, res, function (error) {
                 if (error) {
+                    this.logger.error(error);
                     return res.status(404).json(`Failed to upload image file: ${error}`);
                 }
                 return res.status(201).json(req.files[0].location);

@@ -8,7 +8,7 @@ export class FoodToMealPlan extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column("decimal", { precision: 4, scale: 2, default: 0, })
     servings: number;
 
     @ManyToOne(type => EatingWindow, eating_window => eating_window.id, { eager: true })
