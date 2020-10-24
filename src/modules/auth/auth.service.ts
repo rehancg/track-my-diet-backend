@@ -118,7 +118,7 @@ export class AuthService {
             }
 
             // Generate new tokens
-            const newTokens = await this.generateAppToken(payload);
+            const newTokens = await this.generateAppToken({ telNo: payload.telNo });
             // Save new token
             user.refreshToken = newTokens.refreshToken;
             await this.userService.updateExisting(user);
@@ -126,7 +126,7 @@ export class AuthService {
             this.logger.log(`New token generated for user ${user.telNo}`)
             return newTokens;
         } catch (error) {
-            this.logger.error('Error renewing token', JSON.stringify(error))
+            this.logger.error('Error renewing token', error)
             throw new InternalServerErrorException('Token renewal failed');
         }
     }
