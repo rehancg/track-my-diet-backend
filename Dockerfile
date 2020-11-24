@@ -1,16 +1,17 @@
-from node:12-alpine
+# Using Node:12 Image Since it contains all 
+# the necessary build tools required for dependencies with native build (node-gyp, python, gcc, g++, make)
+# First Stage : to install and build dependences
 
-# Create app directory
-WORKDIR /zeesolutions/src/app
-
+FROM node:12 AS builder
+WORKDIR /app
 COPY package*.json ./
-
-RUN npm ci --only=production
-
+RUN npm install
 COPY . .
-
 RUN npm run build
 
+# Second Stage : Setup command to run your app using lightweight node image
+FROM node:12-alpine
+WORKDIR /app
+COPY --from=builder /app ./
 EXPOSE 1024
-
-CMD [ "node", "dist/main" ]
+CMD ["npm", "run", "start:prod"]
