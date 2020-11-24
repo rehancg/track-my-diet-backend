@@ -1,13 +1,16 @@
-FROM node:10-alpine
+from node:12-alpine
 
-RUN apk add --no-cache nodejs npm
+# Create app directory
+WORKDIR /zeesolutions/src/app
 
-WORKDIR /app
+COPY package*.json ./
 
-COPY . /app
+RUN npm ci --only=production
 
-RUN npm install
+COPY . .
+
+RUN npm run build
 
 EXPOSE 1024
 
-CMD ["npm", "run","start"]
+CMD [ "node", "dist/main" ]
